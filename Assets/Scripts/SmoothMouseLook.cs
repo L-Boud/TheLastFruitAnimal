@@ -63,7 +63,7 @@ public class SmoothMouseLook : MonoBehaviour {
 			rotAverageX = ClampAngle (rotAverageX, minimumX, maximumX);
 
 			Quaternion yQuaternion = Quaternion.AngleAxis (rotAverageY, Vector3.left);
-			Quaternion xQuaternion = Quaternion.AngleAxis (rotAverageX, -Physics.gravity.normalized);
+			Quaternion xQuaternion = Quaternion.AngleAxis (rotAverageX, Vector3.up);
 
 			transform.localRotation = originalRotation * xQuaternion * yQuaternion;
 		}
@@ -85,7 +85,7 @@ public class SmoothMouseLook : MonoBehaviour {
 
 			rotAverageX = ClampAngle (rotAverageX, minimumX, maximumX);
 
-			Quaternion xQuaternion = Quaternion.AngleAxis (rotAverageX, -Physics.gravity.normalized);
+			Quaternion xQuaternion = Quaternion.AngleAxis (rotAverageX, Vector3.up);
 			transform.localRotation = originalRotation * xQuaternion;			
 		}
 		else
@@ -118,6 +118,11 @@ public class SmoothMouseLook : MonoBehaviour {
 			rb.freezeRotation = true;
 		originalRotation = transform.localRotation;
 		Cursor.visible = false;
+	}
+
+	public void Reorient()
+	{
+		originalRotation = transform.localRotation;
 	}
 
 	public static float ClampAngle (float angle, float min, float max)
