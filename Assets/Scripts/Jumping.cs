@@ -30,7 +30,7 @@ public class Jumping : MonoBehaviour {
 		if (canJump) {
 			canJump = false;
 			rb.velocity = Vector3.zero;
-			rb.AddForce (Physics.gravity.normalized * (powerJump? forceConst * 1.6f : forceConst), ForceMode.Impulse);
+			rb.AddForce (-Physics.gravity.normalized * (powerJump? forceConst * 1.6f : forceConst), ForceMode.Impulse);
 		}
 	}
 
